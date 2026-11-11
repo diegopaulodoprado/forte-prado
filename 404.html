@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada - Forte Prado</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: var(--black);
+        }
+        .error-content h1 {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+        .error-content h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .error-content p {
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 2rem;
+        }
+        .btn-home {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 800;
+            border: 2px solid var(--black);
+            box-shadow: 5px 5px 0 rgba(248, 208, 0, 0.4);
+            transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .btn-home:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 rgba(248, 208, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <h1>404</h1>
+            <h2>Página não encontrada</h2>
+            <p>A página que você está procurando não existe ou foi movida.</p>
+            <a href="/" class="btn-home">Voltar ao Início</a>
+        </div>
+    </div>
+</body>
+</html>

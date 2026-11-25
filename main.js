@@ -214,6 +214,29 @@
     }
 
     /* ----------------------------------------------------------
+       Rastreamento de conversões (Google Ads + GA4)
+       ---------------------------------------------------------- */
+    const ADS_CONVERSION = "AW-18567219165/9SA0COzMwLkdEN2PxZVF";
+
+    function trackLead(eventName, extra) {
+        if (typeof window.gtag !== "function") return;
+        window.gtag("event", eventName, Object.assign({ origem_clique: "site" }, extra || {}));
+        window.gtag("event", "conversion", { send_to: ADS_CONVERSION });
+    }
+
+    document.addEventListener("click", (e) => {
+        const a = e.target.closest && e.target.closest("a[href]");
+        if (!a) return;
+        const href = a.getAttribute("href") || "";
+        const local = a.getAttribute("data-testid") || a.className || "link";
+        if (/wa\.me|api\.whatsapp\.com/i.test(href)) {
+            trackLead("clique_whatsapp", { local_clique: String(local) });
+        } else if (/^tel:/i.test(href)) {
+            trackLead("clique_telefone", { local_clique: String(local) });
+        }
+    }, true);
+
+    /* ----------------------------------------------------------
        Forms → WhatsApp + Google Apps Script (planilha)
        ---------------------------------------------------------- */
     function buildWhatsAppUrl(data) {
@@ -303,6 +326,7 @@
             }
 
             sendLeadToSheet(data);
+            trackLead("envio_formulario", { formulario: formId, servico: data.servico });
 
             const url = buildWhatsAppUrl(data);
             window.open(url, "_blank", "noopener,noreferrer");
